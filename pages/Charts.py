@@ -5,6 +5,8 @@ import plotly.graph_objects as go
 from utils import get_aave_df, get_compound_df
 
 
+st.set_page_config(page_title = "Charts")
+
 aave_df = get_aave_df()
 compound_df = get_compound_df()
 
