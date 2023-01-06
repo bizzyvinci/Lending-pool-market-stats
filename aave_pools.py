@@ -4,6 +4,8 @@ import pandas as pd
 from utils import get_aave_df
 
 
+st.set_page_config(page_title = "AAVE Pools", page_icon='😀')
+
 @st.cache
 def get_displayed_df():
     df = get_aave_df()
