@@ -14,11 +14,17 @@ compound_df = get_compound_df()
 metric = st.selectbox(
     'Metric',
     [
+        # General
         'Supply APY', 'Borrow APY',
+        'Supply APR', 'Borrow APR',
         'TVL', 'Total Supply',
         'Available USD Supply', 'Available Token Supply',
         'Borrowed USD', 'Borrowed Token',
         'Utilization Rate',
+        # Compound
+        'Reserved Token', 'Reserved USD',
+        # AAVE
+        'Borrow APY (Stable)', 'Borrow APR (Stable)',
         'Borrowed USD (Stable)', 'Borrowed Token (Stable)',
         'Borrowed USD (Variable)', 'Borrowed Token (Variable)'
     ]
