@@ -50,7 +50,7 @@ for pool in pools:
     df = aave_df if protocol == 'AAVE' else compound_df
     df = df[df['Asset'] == asset]
     fig.add_trace(
-        go.Scatter(x=df['Day'], y=df.get(metric), name=name)
+        go.Scatter(x=df['Day'], y=df.get(metric, []), name=name)
     )
 
 
