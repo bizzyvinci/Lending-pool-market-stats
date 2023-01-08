@@ -36,10 +36,10 @@ metric = st.selectbox(
 
 pools = st.multiselect(
     'Pools',
-    np.append(
+    np.sort(np.append(
         'AAVE - ' + aave_df['Asset'].unique(),
         'Compound - ' + compound_df['Asset'].unique()
-    ),
+    )),
     ['AAVE - USDC']
 )
 
@@ -125,7 +125,7 @@ def add_bar():
     )
 
 
-if metric == '1m ROI' or '1y ROI':
+if metric == '1m ROI' or metric == '1y ROI':
     add_bar()
 else:
     add_lines()
