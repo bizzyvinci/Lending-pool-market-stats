@@ -121,9 +121,12 @@ def add_bar():
         x.append(name + asset)
         y.append(roi)
     fig.add_trace(
-        go.Bar(x=x, y=y, name=metric)
+        go.Bar(x=x, y=y)
     )
-
+    fig.update_layout(
+        yaxis = dict(title=metric),
+        xaxis = dict(title='Pool')
+    )
 
 if metric == '1m ROI' or metric == '1y ROI':
     add_bar()
