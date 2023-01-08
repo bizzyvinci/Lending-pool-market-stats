@@ -35,6 +35,9 @@ def get_aave_df():
     # Process
     for x in ['Supply APR', 'Borrow APR', 'Borrow APR (Stable)', 'Supply APY', 'Borrow APY', 'Borrow APY (Stable)', 'Utilization Rate']:
         df[x] = df[x] * 100
+
+    # Sort values
+    df.sort_values(['Day', 'TVL'], ascending=False, inplace=True)
     return df
 
 
@@ -66,7 +69,30 @@ def get_compound_df():
         'TOTAL_ACTIVE_USD': 'Available USD Supply',
         'TOTAL_RESERVE_TOKEN': 'Reserved Token',
         'TOTAL_RESERVE_USD': 'Reserved USD',
-        'UTILIZATION_RATE': 'Utilization Rate'
+        'UTILIZATION_RATE': 'Utilization Rate',
+        'EXCHANGE_RATE': 'Exchange Rate',
     }, inplace=True)
 
+    # Sort values
+    df.sort_values(['Day', 'TVL'], ascending=False, inplace=True)
+    return df
+
+
+@st.cache
+def get_aave_liquidity_index_df():
+    url = 'https://node-api.flipsidecrypto.com/api/v2/queries/b2e4deef-f503-4644-a28d-3016b5fa2cf0/data/latest'
+    res = requests.get(url).json()
+    df = pd.DataFrame(res)
+    df['DATE_DAY'] = pd.to_datetime(df['DATE_DAY'])
+
+    # Standardize columns
+    df.rename(columns={
+        'DATE_DAY': 'Day',
+        'RESERVE': 'Reserve',
+        'ASSET': 'Asset',
+        'LIQUIDITY_INDEX': 'Exchange Rate',
+    }, inplace=True)
+
+    # Sort values
+    df.sort_values(['Day', 'Exchange Rate'], ascending=False, inplace=True)
     return df

@@ -9,7 +9,7 @@ st.set_page_config(page_title = "Compound Pools", page_icon='😀')
 @st.cache
 def get_displayed_df():
     df = get_compound_df()
-    latest_df = df.sort_values(['Day', 'TVL'], ascending=False).groupby('Asset').head(1)
+    latest_df = df.groupby('Asset').head(1)
 
     displayed_df = pd.DataFrame()
     displayed_df['Pool'] = latest_df['Asset']
